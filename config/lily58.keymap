@@ -9,6 +9,15 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        BT_LAYER {
+            bindings = <&mo 2>;
+            key-positions = <50 57>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -26,7 +35,7 @@
 &kp TAB    &kp Q   &kp W   &kp E   &kp R     &kp T                              &kp Y      &kp U     &kp I      &kp O    &kp P     &kp LBKT
 &kp CAPS   &kp A   &kp S   &kp D   &kp F     &kp G                              &kp H      &kp J     &kp K      &kp L    &kp SEMI  &kp SQT
 &kp LSHFT  &kp Z   &kp X   &kp C   &kp V     &kp B      &kp BSPC     &kp BSPC   &kp N      &kp M     &kp COMMA  &kp DOT  &kp FSLH  &kp RSHFT
-                           &mo 1   &kp LGUI  &kp LCTRL  &kp SPACE    &kp SPACE  &kp ENTER  &kp RALT  &mo 2
+                           &mo 1   &kp LGUI  &kp LCTRL  &kp SPACE    &kp SPACE  &kp ENTER  &kp RALT  &mo 1
             >;
         };
 
@@ -40,29 +49,11 @@
 
             display-name = "Raise";
             bindings = <
-&kp ESC    &kp F1   &kp F2   &kp F3  &kp F4  &kp F5                     &kp N7  &kp N8    &kp N9     &kp DEL   &trans  &trans
-&trans     &kp F6   &kp F7   &kp F8  &kp F9  &kp F10                    &kp N4  &kp N5    &kp N6     &kp FSLH  &trans  &trans
-&trans     &kp F11  &kp F12  &trans  &trans  &trans                     &kp N1  &kp N2    &kp N3     &kp STAR  &trans  &trans
-&kp LSHFT  &trans   &trans   &trans  &trans  &trans   &trans    &trans  &kp N0  &kp PLUS  &kp MINUS  &kp RET   &trans  &kp RSHFT
-                             &trans  &trans  &trans   &trans    &trans  &trans  &trans    &trans
-            >;
-        };
-
-        lower_layer {
-            // ------------------------------------------------------------------------------------------------------------
-            // | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   |      |       |       |      |       |       |
-            // |  F1   |  F2 |  F3 |  F4  |  F5  |  F6  |                   |  F7  |  F8   |  F9   |  F10 |  F11  |  F12  |
-            // |   `   |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |   ~   |
-            // |       |     |     |      |      |      |        |  |       |      |  _    |  +    |  {   |   }   |  "|"  |
-            //                     |      |      |      |        |  |       |      |       |       |
-
-            display-name = "Lower";
-            bindings = <
-&trans  &trans  &trans  &kp C_REWIND  &kp C_PLAY_PAUSE  &kp C_FAST_FORWARD                    &trans  &trans    &trans    &trans     &trans  &trans
-&trans  &trans  &trans  &trans        &trans            &kp C_VOLUME_UP                       &trans  &trans    &kp UP    &trans     &trans  &trans
-&trans  &trans  &trans  &trans        &trans            &kp C_VOLUME_DOWN                     &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
-&trans  &trans  &trans  &trans        &trans            &kp K_MUTE          &trans    &trans  &trans  &trans    &trans    &trans     &trans  &trans
-                        &trans        &trans            &trans              &trans    &trans  &trans  &trans    &trans
+&kp ESC    &kp F1   &kp F2   &kp F3    &kp F4    &kp F5                             &kp KP_N7  &kp KP_N8   &kp KP_N9     &trans   &kp MINUS  &kp EQUAL
+&kp TAB    &kp F6   &kp F7   &kp F8    &kp F9    &kp F10                            &kp KP_N4  &kp KP_N5   &kp KP_N6     &trans   &trans     &kp BSLH
+&kp CAPS   &kp F11  &kp F12  &trans    &kp UP    &kp DEL                            &kp KP_N1  &kp KP_N2   &kp KP_N3     &trans   &trans     &kp GRAVE
+&kp LSHFT  &trans   &trans   &kp LEFT  &kp DOWN  &kp RIGHT  &kp BSPC     &kp BSPC   &kp KP_N0  &kp KP_DOT  &kp KP_MINUS  &kp DEL  &trans     &kp RSHFT
+                             &trans    &kp LGUI  &kp LCTRL  &kp SPACE    &kp SPACE  &kp RET    &kp RALT    &trans
             >;
         };
 
@@ -77,12 +68,5 @@
         };
     };
 
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        BT {
-            if-layers = <1 2>;
-            then-layer = <3>;
-        };
-    };
+    conditional_layers { compatible = "zmk,conditional-layers"; };
 };
